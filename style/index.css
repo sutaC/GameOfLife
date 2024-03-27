@@ -2,10 +2,28 @@
     box-sizing: border-box;
 }
 
+:root {
+    --clr-body-bg: darkslategray;
+    --clr-text: white;
+}
+
+html {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    color: var(--clr-text);
+}
+
 body {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--clr-body-bg);
 }
 
 canvas {
     background-color: black;
+    border-radius: 0.125rem;
+    border: 1px solid var(--clr-text);
 }
