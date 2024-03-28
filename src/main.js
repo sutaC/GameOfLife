@@ -9,8 +9,7 @@ if (!canvas) throw new ReferenceError('Could not find element "#canvas"');
 canvas.width = 500;
 canvas.height = 500;
 
-const br = new Brush(canvas, 100);
-br.setBorderColor("black");
+const br = new Brush(canvas, 30);
 const gm = new Game(br);
 
 // Drawing mechanics
