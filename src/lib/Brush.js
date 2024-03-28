@@ -49,12 +49,15 @@ export default class Brush {
      * Exposes API for drawing grid on canvas
      * @constructor
      * @param {HTMLCanvasElement} canvas - Canvas element to draw on
+     * @param {number} [grid] - Ammount of grid rows / collumns (optional)
      */
-    constructor(canvas) {
+    constructor(canvas, grid) {
         this.canvas = canvas;
         const ctx = this.canvas.getContext("2d");
         if (!ctx) throw new Error("Could not create canvas context");
         this.ctx = ctx;
+
+        if (grid) this.grid = grid;
 
         this.cell = (canvas.width - this.border * 2) / this.grid - this.border;
 
