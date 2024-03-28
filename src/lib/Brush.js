@@ -35,7 +35,7 @@ export default class Brush {
      * @public
      * @readonly
      */
-    grid = 20;
+    grid;
 
     /**
      * Size of one grid cell
@@ -57,7 +57,7 @@ export default class Brush {
         if (!ctx) throw new Error("Could not create canvas context");
         this.ctx = ctx;
 
-        if (grid) this.grid = grid;
+        this.grid = grid || 20;
 
         this.cell = (canvas.width - this.border * 2) / this.grid - this.border;
 
@@ -67,17 +67,32 @@ export default class Brush {
     }
 
     /**
-     * Returns cell coordinates on canvas based on given grid coordinates value
+     * Returns cell canvas coordinates based on given grid coordinates value
+     * @method
      * @private
      * @param {number} idx - Cell coordinates on grid
      * @returns {number} - Cell coordinates on canvas
      */
-    getCellPosition(idx) {
+    getCellCanvasCoordinates(idx) {
         return this.border * 1.5 + idx * (this.cell + this.border);
     }
 
     /**
+     * Returns cell gridv coordinates based on given canvas coordinates value
+     * @method
+     * @public
+     * @param {number} crd - Cell coordinates on canvas
+     * @returns {number} - Cell coordinates on grid
+     */
+    getCellGridCoordinates(crd) {
+        return Math.floor(
+            (crd - this.border * 1.5) / (this.cell + this.border)
+        );
+    }
+
+    /**
      * Clears canvas
+     * @method
      * @public
      * @returns {void}
      */
@@ -87,6 +102,7 @@ export default class Brush {
 
     /**
      * Draws grid border
+     * @method
      * @public
      * @returns {void}
      */
@@ -105,6 +121,7 @@ export default class Brush {
 
     /**
      * Draws cell, based on given grid coordinates
+     * @method
      * @public
      * @param {number} x - X grid coordinates
      * @param {number} y - Y grid coordinates
@@ -118,8 +135,8 @@ export default class Brush {
 
         this.ctx.beginPath();
         this.ctx.fillRect(
-            this.getCellPosition(x),
-            this.getCellPosition(y),
+            this.getCellCanvasCoordinates(x),
+            this.getCellCanvasCoordinates(y),
             this.cell,
             this.cell
         );
@@ -127,20 +144,24 @@ export default class Brush {
     }
 
     /**
-     * Border color
+     * Sets border color
+     * @method
      * @public
-     * @param {string} color
+     * @param {string} color - Border color
+     * @returns {void}
      */
-    set borderColor(color) {
+    setBorderColor(color) {
         this.ctx.strokeStyle = color;
     }
 
     /**
-     * Cell color
+     * Sets cell color
+     * @method
      * @public
-     * @param {string} color
+     * @param {string} color - Cell color
+     * @returns {void}
      */
-    set cellColor(color) {
+    setCellColor(color) {
         this.ctx.fillStyle = color;
     }
 }
