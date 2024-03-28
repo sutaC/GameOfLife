@@ -9,7 +9,8 @@ if (!canvas) throw new ReferenceError('Could not find element "#canvas"');
 canvas.width = 500;
 canvas.height = 500;
 
-const br = new Brush(canvas);
+const br = new Brush(canvas, 100);
+br.setBorderColor("black");
 const gm = new Game(br);
 
 // Drawing mechanics
@@ -24,6 +25,8 @@ const handleClickCell = (event) => {
 
     const x = br.getCellGridCoordinates(event.offsetX);
     const y = br.getCellGridCoordinates(event.offsetY);
+
+    if (x < 0 || x >= br.grid || y < 0 || x >= br.grid) return;
 
     switch (event.buttons) {
         case 1:
