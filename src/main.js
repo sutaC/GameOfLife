@@ -5,9 +5,9 @@ import Game from "./lib/Game.js";
 /** @type {HTMLCanvasElement | null} Main canvas element to draw on */
 const canvas = document.querySelector("#canvas");
 if (!canvas) throw new ReferenceError('Could not find element "#canvas"');
-/** @type {HTMLButtonElement | null} Next button for handling 'next stage action' */
-const btnNext = document.querySelector("#next");
-if (!btnNext) throw new ReferenceError('Could not find element "#next"');
+/** @type {HTMLButtonElement | null} Button for handling 'toggle stage action' */
+const btnToggle = document.querySelector("#toggle");
+if (!btnToggle) throw new ReferenceError('Could not find element "#toggle"');
 
 canvas.width = 500;
 canvas.height = 500;
@@ -45,12 +45,24 @@ canvas.addEventListener("mousedown", handleClickCell);
 canvas.addEventListener("mousemove", handleClickCell);
 canvas.addEventListener("contextmenu", (event) => event.preventDefault());
 
+/** @type {number | null} Game running interval id */
+let playsId = null;
 /**
- * Handles next stage event
+ * Handles toggle game event
  * @returns {void}
  */
-const handleNextStage = () => {
-    gm.generateNextStage();
-    gm.drawBoard();
+const handleToggleStage = () => {
+    if (playsId !== null) {
+        clearInterval(playsId);
+        playsId = null;
+        btnToggle.innerText = "Run";
+        return;
+    }
+
+    playsId = setInterval(() => {
+        gm.generateNextStage();
+        gm.drawBoard();
+    }, 250);
+    btnToggle.innerText = "Stop";
 };
-btnNext.addEventListener("click", handleNextStage);
+btnToggle.addEventListener("click", handleToggleStage);

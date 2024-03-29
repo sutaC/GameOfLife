@@ -9,11 +9,22 @@
 </dd>
 </dl>
 
+## Members
+
+<dl>
+<dt><a href="#playsId">playsId</a> : <code>number</code> | <code>null</code></dt>
+<dd><p>Game running interval id</p>
+</dd>
+</dl>
+
 ## Constants
 
 <dl>
 <dt><a href="#canvas">canvas</a> : <code>HTMLCanvasElement</code> | <code>null</code></dt>
 <dd><p>Main canvas element to draw on</p>
+</dd>
+<dt><a href="#btnToggle">btnToggle</a> : <code>HTMLButtonElement</code> | <code>null</code></dt>
+<dd><p>Button for handling &#39;toggle stage action&#39;</p>
 </dd>
 </dl>
 
@@ -22,6 +33,9 @@
 <dl>
 <dt><a href="#handleClickCell">handleClickCell(event)</a> ⇒ <code>void</code></dt>
 <dd><p>Handles click on cell event</p>
+</dd>
+<dt><a href="#handleToggleStage">handleToggleStage()</a> ⇒ <code>void</code></dt>
+<dd><p>Handles toggle game event</p>
 </dd>
 </dl>
 
@@ -141,6 +155,7 @@ Game controller class
 * [Game](#module_Game)
     * _instance_
         * [.drawBoard()](#module_Game+drawBoard) ⇒ <code>void</code>
+        * [.generateNextStage()](#module_Game+generateNextStage) ⇒ <code>void</code>
         * [.setCell(x, y, state)](#module_Game+setCell) ⇒ <code>void</code>
         * [.getBoard()](#module_Game+getBoard) ⇒ [<code>Board</code>](#Board)
     * _static_
@@ -150,6 +165,13 @@ Game controller class
 
 ### game.drawBoard() ⇒ <code>void</code>
 Draws game board
+
+**Kind**: instance method of [<code>Game</code>](#module_Game)  
+**Access**: public  
+<a name="module_Game+generateNextStage"></a>
+
+### game.generateNextStage() ⇒ <code>void</code>
+Generates new board stage
 
 **Kind**: instance method of [<code>Game</code>](#module_Game)  
 **Access**: public  
@@ -187,10 +209,22 @@ Returns empty game board
 | --- | --- | --- |
 | grid | <code>number</code> | Number of rows / collumns |
 
+<a name="playsId"></a>
+
+## playsId : <code>number</code> \| <code>null</code>
+Game running interval id
+
+**Kind**: global variable  
 <a name="canvas"></a>
 
 ## canvas : <code>HTMLCanvasElement</code> \| <code>null</code>
 Main canvas element to draw on
+
+**Kind**: global constant  
+<a name="btnToggle"></a>
+
+## btnToggle : <code>HTMLButtonElement</code> \| <code>null</code>
+Button for handling 'toggle stage action'
 
 **Kind**: global constant  
 <a name="handleClickCell"></a>
@@ -204,6 +238,12 @@ Handles click on cell event
 | --- | --- |
 | event | <code>MouseEvent</code> | 
 
+<a name="handleToggleStage"></a>
+
+## handleToggleStage() ⇒ <code>void</code>
+Handles toggle game event
+
+**Kind**: global function  
 <a name="Board"></a>
 
 ## Board : <code>Array.&lt;Array.&lt;boolean&gt;&gt;</code>
