@@ -82,6 +82,69 @@ export default class Game {
     }
 
     /**
+     * Generates new board stage
+     * @method
+     * @public
+     * @returns {void}
+     */
+    generateNextStage() {
+        const len = this.board.length;
+        const nbd = Game.getEmptyBoard(len);
+
+        for (let x = 0; x < len; x++) {
+            for (let y = 0; y < len; y++) {
+                const cell = this.board[x][y];
+                let neighbors = 0;
+
+                // Counting neighbors
+                if (y - 1 > 0 && x - 1 > 0) {
+                    if (this.board[x - 1][y - 1]) neighbors++;
+                }
+                if (y - 1 > 0) {
+                    if (this.board[x][y - 1]) neighbors++;
+                }
+                if (y - 1 > 0 && x + 1 < len) {
+                    if (this.board[x + 1][y - 1]) neighbors++;
+                }
+                if (x - 1 > 0) {
+                    if (this.board[x - 1][y]) neighbors++;
+                }
+                if (x + 1 < len) {
+                    if (this.board[x + 1][y]) neighbors++;
+                }
+                if (y + 1 < len && x - 1 > 0) {
+                    if (this.board[x - 1][y + 1]) neighbors++;
+                }
+                if (y + 1 < len) {
+                    if (this.board[x][y + 1]) neighbors++;
+                }
+                if (y + 1 < len && x + 1 < len) {
+                    if (this.board[x + 1][y + 1]) neighbors++;
+                }
+
+                // New state
+                if (!cell && neighbors === 3) {
+                    nbd[x][y] = true;
+                    continue;
+                }
+                if (cell && neighbors < 2) {
+                    nbd[x][y] = false;
+                    continue;
+                }
+                if (cell && neighbors > 3) {
+                    nbd[x][y] = false;
+                    continue;
+                }
+                if (cell) {
+                    nbd[x][y] = true;
+                }
+            }
+        }
+
+        this.board = nbd;
+    }
+
+    /**
      * Sets cell on board to given state
      * @method
      * @public

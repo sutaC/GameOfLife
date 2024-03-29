@@ -5,6 +5,9 @@ import Game from "./lib/Game.js";
 /** @type {HTMLCanvasElement | null} Main canvas element to draw on */
 const canvas = document.querySelector("#canvas");
 if (!canvas) throw new ReferenceError('Could not find element "#canvas"');
+/** @type {HTMLButtonElement | null} Next button for handling 'next stage action' */
+const btnNext = document.querySelector("#next");
+if (!btnNext) throw new ReferenceError('Could not find element "#next"');
 
 canvas.width = 500;
 canvas.height = 500;
@@ -41,3 +44,13 @@ const handleClickCell = (event) => {
 canvas.addEventListener("mousedown", handleClickCell);
 canvas.addEventListener("mousemove", handleClickCell);
 canvas.addEventListener("contextmenu", (event) => event.preventDefault());
+
+/**
+ * Handles next stage event
+ * @returns {void}
+ */
+const handleNextStage = () => {
+    gm.generateNextStage();
+    gm.drawBoard();
+};
+btnNext.addEventListener("click", handleNextStage);
