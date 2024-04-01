@@ -21,17 +21,55 @@ if (!oFrames) throw new ReferenceError('Could not find element "#frames"');
 const oTime = document.querySelector("#time");
 if (!oTime) throw new ReferenceError('Could not find element "#time"');
 
+/**
+ * Main brush object
+ * @type {Brush | undefined}
+ */
+let br;
+
+/**
+ * Main game object
+ * @type {Game | undefined}
+ */
+let gm;
+
+/**
+ * Prefered size of canvas
+ * @type {number}
+ */
+const preferedSize = 500;
+
+/**
+ * Canvas cell color
+ * @type {string}
+ */
 const color = "hsl(34, 93%, 95%)";
 
-canvas.width = 500;
-canvas.height = 500;
+/**
+ * Handles resize event and initialization
+ * @returns {void}
+ */
+const handleResize = () => {
+    if (window.innerWidth > preferedSize) {
+        canvas.width = preferedSize;
+        canvas.height = preferedSize;
+    } else {
+        const size = window.innerWidth - 16;
+        canvas.width = size;
+        canvas.height = size;
+    }
 
-const br = new Brush(canvas, 30);
-
-// br.setBorderColor(color);
-br.setCellColor(color);
-
-const gm = new Game(br);
+    br = new Brush(canvas, 30);
+    br.setCellColor(color);
+    if (gm) {
+        gm = new Game(br, gm.getBoard());
+    } else {
+        gm = new Game(br);
+    }
+    gm.drawBoard();
+};
+handleResize();
+window.addEventListener("resize", handleResize);
 
 // Drawing mechanics
 /**
@@ -40,6 +78,8 @@ const gm = new Game(br);
  * @returns {void}
  */
 const handleClickCell = (event) => {
+    if (!br || !gm) return;
+
     event.preventDefault();
     if (event.buttons === 0) return;
 
@@ -89,6 +129,8 @@ const handleToggleStage = () => {
     }
 
     playsId = setInterval(() => {
+        if (!gm) return;
+
         gm.generateNextStage();
         gm.drawBoard();
         frames++;
@@ -111,6 +153,8 @@ btnToggle.addEventListener("click", handleToggleStage);
  * @returns {void}
  */
 const handleNextStage = () => {
+    if (!gm) return;
+
     gm.generateNextStage();
     gm.drawBoard();
     frames++;
@@ -123,6 +167,8 @@ btnNext.addEventListener("click", handleNextStage);
  * @returns {void}
  */
 const handleClear = () => {
+    if (!gm) return;
+
     if (playsId !== null) handleToggleStage();
     gm.clearBoard();
     gm.drawBoard();
