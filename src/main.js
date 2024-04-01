@@ -230,6 +230,7 @@ const handleChangeTheme = () => {
     }
     document.body.classList.add(theme);
     localStorage.setItem("theme", theme);
-    handleResize();
+    br?.setCellColor(color);
+    gm?.drawBoard();
 };
 btnTheme.addEventListener("click", handleChangeTheme);
