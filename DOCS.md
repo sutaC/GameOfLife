@@ -12,6 +12,12 @@
 ## Members
 
 <dl>
+<dt><a href="#theme">theme</a> : <code><a href="#Theme">Theme</a></code></dt>
+<dd><p>Page theme</p>
+</dd>
+<dt><a href="#color">color</a> : <code><a href="#Colors">Colors</a></code></dt>
+<dd><p>Canvas cell color</p>
+</dd>
 <dt><a href="#br">br</a> : <code>Brush</code> | <code>undefined</code></dt>
 <dd><p>Main brush object</p>
 </dd>
@@ -47,11 +53,11 @@
 <dt><a href="#oTime">oTime</a> : <code>HTMLOutputElement</code> | <code>null</code></dt>
 <dd><p>Output element for displaying time</p>
 </dd>
+<dt><a href="#btnTheme">btnTheme</a> : <code>HTMLButtonElement</code> | <code>null</code></dt>
+<dd><p>Button element for handling &#39;change theme action&#39;</p>
+</dd>
 <dt><a href="#preferedSize">preferedSize</a> : <code>number</code></dt>
 <dd><p>Prefered size of canvas</p>
-</dd>
-<dt><a href="#color">color</a> : <code>string</code></dt>
-<dd><p>Canvas cell color</p>
 </dd>
 </dl>
 
@@ -73,6 +79,9 @@
 <dt><a href="#handleClear">handleClear()</a> ⇒ <code>void</code></dt>
 <dd><p>Handles clear event</p>
 </dd>
+<dt><a href="#handleChangeTheme">handleChangeTheme()</a> ⇒ <code>void</code></dt>
+<dd><p>Handles theme change event</p>
+</dd>
 </dl>
 
 ## Typedefs
@@ -80,6 +89,9 @@
 <dl>
 <dt><a href="#Board">Board</a> : <code>Array.&lt;Array.&lt;boolean&gt;&gt;</code></dt>
 <dd><p>Game board</p>
+</dd>
+<dt><a href="#Theme">Theme</a> : <code>&quot;light&quot;</code> | <code>&quot;dark&quot;</code></dt>
+<dd><p>Page theme type</p>
 </dd>
 </dl>
 
@@ -255,6 +267,18 @@ Returns empty game board
 | --- | --- | --- |
 | grid | <code>number</code> | Number of rows / collumns |
 
+<a name="theme"></a>
+
+## theme : [<code>Theme</code>](#Theme)
+Page theme
+
+**Kind**: global variable  
+<a name="color"></a>
+
+## color : [<code>Colors</code>](#Colors)
+Canvas cell color
+
+**Kind**: global variable  
 <a name="br"></a>
 
 ## br : <code>Brush</code> \| <code>undefined</code>
@@ -279,6 +303,20 @@ Game running interval id
 Game timer interval id
 
 **Kind**: global variable  
+<a name="Colors"></a>
+
+## Colors : <code>enum</code>
+Canvas cell colors
+
+**Kind**: global enum  
+**Read only**: true  
+**Properties**
+
+| Name | Type | Default |
+| --- | --- | --- |
+| dark | <code>string</code> | <code>&quot;hsl(34, 93%, 95%)&quot;</code> | 
+| light | <code>string</code> | <code>&quot;hsl(0, 0%, 20%)&quot;</code> | 
+
 <a name="canvas"></a>
 
 ## canvas : <code>HTMLCanvasElement</code> \| <code>null</code>
@@ -315,16 +353,16 @@ Output element for displaying frames
 Output element for displaying time
 
 **Kind**: global constant  
+<a name="btnTheme"></a>
+
+## btnTheme : <code>HTMLButtonElement</code> \| <code>null</code>
+Button element for handling 'change theme action'
+
+**Kind**: global constant  
 <a name="preferedSize"></a>
 
 ## preferedSize : <code>number</code>
 Prefered size of canvas
-
-**Kind**: global constant  
-<a name="color"></a>
-
-## color : <code>string</code>
-Canvas cell color
 
 **Kind**: global constant  
 <a name="handleResize"></a>
@@ -362,9 +400,21 @@ Handles next game event
 Handles clear event
 
 **Kind**: global function  
+<a name="handleChangeTheme"></a>
+
+## handleChangeTheme() ⇒ <code>void</code>
+Handles theme change event
+
+**Kind**: global function  
 <a name="Board"></a>
 
 ## Board : <code>Array.&lt;Array.&lt;boolean&gt;&gt;</code>
 Game board
+
+**Kind**: global typedef  
+<a name="Theme"></a>
+
+## Theme : <code>&quot;light&quot;</code> \| <code>&quot;dark&quot;</code>
+Page theme type
 
 **Kind**: global typedef  
