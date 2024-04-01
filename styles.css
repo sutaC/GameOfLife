@@ -166,6 +166,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 a {
@@ -175,6 +176,39 @@ a {
 
 a:hover {
     opacity: 0.7;
+}
+
+button#theme {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.75rem;
+    border: none;
+    background-color: transparent;
+    color: var(--clr-text);
+    cursor: pointer;
+    transition: all 100ms ease-out;
+}
+
+.dark button#theme svg.sun {
+    display: block;
+}
+.dark button#theme svg.moon {
+    display: none;
+}
+.light button#theme svg.sun {
+    display: none;
+}
+.light button#theme svg.moon {
+    display: block;
+}
+
+button#theme:hover {
+    translate: 0 -0.125rem;
+    opacity: 0.8;
+}
+
+button#theme:active {
+    translate: 0;
 }
 
 @media (width <= 600px) {
