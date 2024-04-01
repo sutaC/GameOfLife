@@ -3,8 +3,9 @@
 }
 
 :root {
-    --clr-body-bg: darkslategray;
-    --clr-text: white;
+    --clr-body-bg: hsl(34, 93%, 95%);
+    --clr-text: hsl(0, 0%, 20%);
+    --clr-text-light: hsl(0, 0%, 50%);
 }
 
 html {
@@ -15,24 +16,59 @@ html {
 
 body {
     margin: 0;
-    padding: 1rem;
+    min-height: 100vh;
+    background-color: var(--clr-body-bg);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    gap: 1.25rem;
-    background-color: var(--clr-body-bg);
 }
 
-h1 {
+body > * {
+    width: 100%;
+}
+
+h1,
+p {
     margin: 0;
 }
 
+h1 {
+    text-align: center;
+}
+
+/* --- */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px dashed var(--clr-text);
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    flex-grow: 1;
+}
+
 canvas {
-    background-color: black;
+    background-color: var(--clr-text);
     border-radius: 0.125rem;
-    border: 1px solid var(--clr-text);
+    border: 1px solid var(--clr-body-bg);
     cursor: crosshair;
+
+    width: clamp(5rem, 500px, calc(100vw - 0.5rem * 2));
+    aspect-ratio: 1;
+}
+
+.controlls,
+.stats {
+    width: 100%;
+    flex-basis: 20%;
 }
 
 .controlls {
@@ -40,4 +76,96 @@ canvas {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+}
+
+.controlls > * {
+    flex: 1;
+}
+
+.stats {
+    text-align: right;
+}
+
+button {
+    --_clr-btn-bg: color-mix(
+        in srgb,
+        var(--clr-text-light) 50%,
+        transparent 100%
+    );
+
+    border: 1px dotted var(--clr-text);
+    padding: 0.5em 0.75em;
+    font-size: 0.9rem;
+    background-color: transparent;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    background-color: var(--_clr-btn-bg);
+    transition: all 100ms ease-out;
+}
+
+button:hover {
+    --_clr-btn-bg: color-mix(
+        in srgb,
+        var(--clr-text-light) 35%,
+        transparent 100%
+    );
+    translate: 0 -0.125rem;
+}
+
+button:active {
+    --_clr-btn-bg: color-mix(
+        in srgb,
+        var(--clr-text-light) 70%,
+        transparent 100%
+    );
+    translate: 0;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+
+main {
+    height: 100%;
+}
+
+main:has(canvas.running) {
+    --_clr-running: color-mix(in srgb, greenyellow 25%, transparent 100%);
+    background-color: var(--_clr-running);
+}
+
+footer {
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-top: 1px dashed var(--clr-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    color: var(--clr-text-light);
+    transition: all 100ms ease-out;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+@media (width <= 600px) {
+    header {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
 }

@@ -9,12 +9,35 @@
         <script type="module" src="./src/main.js" defer></script>
     </head>
     <body>
-        <h1>Conoway's Game of Life</h1>
-        <canvas id="canvas"></canvas>
-        <div class="controlls">
-            <button id="toggle">Run</button>
-            <button id="next">Next</button>
-            <button id="clear">Clear</button>
-        </div>
+        <header>
+            <div class="controlls">
+                <button id="toggle">Run</button>
+                <button id="next">Next</button>
+                <button id="clear">Clear</button>
+            </div>
+
+            <h1>Conoway's Game of Life</h1>
+
+            <div class="stats">
+                <p>Frames: <output id="frames">0</output></p>
+                <p>Time: <output id="time">0</output>s</p>
+            </div>
+        </header>
+
+        <main>
+            <canvas id="canvas"></canvas>
+        </main>
+
+        <footer>
+            <p>
+                Made by
+                <a
+                    href="https://github.com/sutaC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >sutaC</a
+                >
+            </p>
+        </footer>
     </body>
 </html>

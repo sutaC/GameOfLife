@@ -82,9 +82,10 @@ export default class Brush {
      * @method
      * @public
      * @param {number} crd - Cell coordinates on canvas
+     * @param {number} [ratio] - Cell coordinates on canvas (default)
      * @returns {number} - Cell coordinates on grid
      */
-    getCellGridCoordinates(crd) {
+    getCellGridCoordinates(crd, ratio = 1) {
         return Math.floor(
             (crd - this.border * 1.5) / (this.cell + this.border)
         );
