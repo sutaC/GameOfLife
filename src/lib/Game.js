@@ -160,9 +160,20 @@ export default class Game {
     /**
      * Returng game board
      * @method
+     * @public
      * @returns {Board} - Game board
      */
     getBoard() {
         return this.board;
+    }
+
+    /**
+     * Clears game board
+     * @method
+     * @public
+     * @returns {void}
+     */
+    clearBoard() {
+        this.board = Game.getEmptyBoard(this.board.length);
     }
 }
