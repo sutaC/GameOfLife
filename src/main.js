@@ -8,6 +8,12 @@ if (!canvas) throw new ReferenceError('Could not find element "#canvas"');
 /** @type {HTMLButtonElement | null} Button for handling 'toggle stage action' */
 const btnToggle = document.querySelector("#toggle");
 if (!btnToggle) throw new ReferenceError('Could not find element "#toggle"');
+/** @type {HTMLButtonElement | null} Button for handling 'next stage action' */
+const btnNext = document.querySelector("#next");
+if (!btnNext) throw new ReferenceError('Could not find element "#next"');
+/** @type {HTMLButtonElement | null} Button for handling 'clear action' */
+const btnClear = document.querySelector("#clear");
+if (!btnClear) throw new ReferenceError('Could not find element "#clear"');
 
 canvas.width = 500;
 canvas.height = 500;
@@ -66,3 +72,23 @@ const handleToggleStage = () => {
     btnToggle.innerText = "Stop";
 };
 btnToggle.addEventListener("click", handleToggleStage);
+
+/**
+ * Handles next game event
+ * @returns {void}
+ */
+const handleNextStage = () => {
+    gm.generateNextStage();
+    gm.drawBoard();
+};
+btnNext.addEventListener("click", handleNextStage);
+
+/**
+ * Handles clear event
+ * @returns {void}
+ */
+const handleClear = () => {
+    gm.clearBoard();
+    gm.drawBoard();
+};
+btnClear.addEventListener("click", handleClear);

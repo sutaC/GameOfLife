@@ -34,3 +34,10 @@ canvas {
     border: 1px solid var(--clr-text);
     cursor: crosshair;
 }
+
+.controlls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
