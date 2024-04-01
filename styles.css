@@ -8,6 +8,23 @@
     --clr-text-light: hsl(0, 0%, 50%);
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --clr-text: hsl(34, 93%, 95%);
+        --clr-body-bg: hsl(0, 0%, 20%);
+    }
+
+    :root:has(.light) {
+        --clr-body-bg: hsl(34, 93%, 95%);
+        --clr-text: hsl(0, 0%, 20%);
+    }
+}
+
+:root:has(.dark) {
+    --clr-text: hsl(34, 93%, 95%);
+    --clr-body-bg: hsl(0, 0%, 20%);
+}
+
 html {
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
@@ -93,7 +110,7 @@ canvas {
     text-align: right;
 }
 
-button {
+.controlls > button {
     --_clr-btn-bg: color-mix(
         in srgb,
         var(--clr-text-light) 50%,
@@ -107,10 +124,11 @@ button {
     border-radius: 0.25rem;
     cursor: pointer;
     background-color: var(--_clr-btn-bg);
+    color: var(--clr-text);
     transition: all 100ms ease-out;
 }
 
-button:hover {
+.controlls > button:hover {
     --_clr-btn-bg: color-mix(
         in srgb,
         var(--clr-text-light) 35%,
@@ -119,7 +137,7 @@ button:hover {
     translate: 0 -0.125rem;
 }
 
-button:active {
+.controlls > button:active {
     --_clr-btn-bg: color-mix(
         in srgb,
         var(--clr-text-light) 70%,
@@ -128,7 +146,7 @@ button:active {
     translate: 0;
 }
 
-button:disabled {
+.controlls > button:disabled {
     opacity: 0.5;
 }
 

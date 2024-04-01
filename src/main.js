@@ -20,7 +20,48 @@ if (!oFrames) throw new ReferenceError('Could not find element "#frames"');
 /** @type {HTMLOutputElement | null} Output element for displaying time */
 const oTime = document.querySelector("#time");
 if (!oTime) throw new ReferenceError('Could not find element "#time"');
+/** @type {HTMLButtonElement | null} Button element for handling 'change theme action' */
+const btnTheme = document.querySelector("#theme");
+if (!btnTheme) throw new ReferenceError('Could not find element "#theme"');
 
+// Themes
+/**
+ * Page theme type
+ * @typedef {"light" | "dark"} Theme
+ */
+
+/**
+ * Page theme
+ * @type {Theme}
+ */
+let theme = "light";
+const saved = localStorage.getItem("theme");
+if (saved !== null) {
+    theme = /** @type {Theme} */ (saved);
+}
+localStorage.setItem("theme", theme);
+document.body.classList.add(theme);
+
+/**
+ * Canvas cell colors
+ * @enum {string} - Colors
+ * @readonly
+ */
+const Colors = {
+    dark: "hsl(34, 93%, 95%)",
+    light: "hsl(0, 0%, 20%)",
+};
+
+/**
+ * Canvas cell color
+ * @type {Colors}
+ */
+let color = Colors.dark;
+if (theme === "dark") {
+    color = Colors.light;
+}
+
+// Resize handling and init
 /**
  * Main brush object
  * @type {Brush | undefined}
@@ -38,12 +79,6 @@ let gm;
  * @type {number}
  */
 const preferedSize = 500;
-
-/**
- * Canvas cell color
- * @type {string}
- */
-const color = "hsl(34, 93%, 95%)";
 
 /**
  * Handles resize event and initialization
@@ -110,6 +145,7 @@ let timerId = null;
 let frames = 0;
 let time = 0;
 
+// Controlls
 /**
  * Handles toggle game event
  * @returns {void}
@@ -178,3 +214,22 @@ const handleClear = () => {
     oTime.innerText = time.toString();
 };
 btnClear.addEventListener("click", handleClear);
+
+/**
+ * Handles theme change event
+ * @returns {void}
+ */
+const handleChangeTheme = () => {
+    document.body.classList.remove(theme);
+    if (theme === "dark") {
+        theme = "light";
+        color = Colors.dark;
+    } else {
+        theme = "dark";
+        color = Colors.light;
+    }
+    document.body.classList.add(theme);
+    localStorage.setItem("theme", theme);
+    handleResize();
+};
+btnTheme.addEventListener("click", handleChangeTheme);
