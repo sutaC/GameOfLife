@@ -221,6 +221,39 @@ button#theme:active {
     translate: 0;
 }
 
+.actions {
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.action > input {
+    display: none;
+}
+
+.action > label {
+    justify-content: center;
+    align-content: center;
+    padding: 0.25rem;
+    border-radius: 100%;
+    border: 1px solid transparent;
+    transition: all 100ms ease-out;
+}
+
+.action > label:hover {
+    translate: 0 -0.125rem;
+    opacity: 0.8;
+}
+
+.action > label:active {
+    translate: 0;
+}
+
+.action > input:checked + label {
+    background-color: var(--clr-text-light);
+    border-color: var(--clr-text);
+}
+
 /* --- */
 
 .desktop {
@@ -252,5 +285,13 @@ button#theme:active {
     .stats {
         flex-direction: row;
         gap: 1rem;
+    }
+
+    .actions {
+        display: flex;
+    }
+
+    .action > label {
+        display: flex;
     }
 }

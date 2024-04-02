@@ -23,6 +23,12 @@ if (!oTime) throw new ReferenceError('Could not find element "#time"');
 /** @type {HTMLButtonElement | null} Button element for handling 'change theme action' */
 const btnTheme = document.querySelector("#theme");
 if (!btnTheme) throw new ReferenceError('Could not find element "#theme"');
+/** @type {NodeListOf<HTMLInputElement>} Radio elements for handling 'change touchAction action' */
+const rActions = document.querySelectorAll('input[name="action"]');
+if (rActions.length === 0)
+    throw new ReferenceError(
+        'Could not find any elements "input[name="action"]"'
+    );
 
 // Themes
 /**
@@ -81,6 +87,17 @@ let gm;
 const preferedSize = 500;
 
 /**
+ * Determining whether it is a mobile device
+ * @returns {boolean}
+ */
+const isMobile = () => {
+    return (
+        "ontouchstart" in document.documentElement ||
+        navigator.maxTouchPoints > 0
+    );
+};
+
+/**
  * Handles resize event and initialization
  * @returns {void}
  */
@@ -137,6 +154,59 @@ const handleClickCell = (event) => {
 canvas.addEventListener("mousedown", handleClickCell);
 canvas.addEventListener("mousemove", handleClickCell);
 canvas.addEventListener("contextmenu", (event) => event.preventDefault());
+
+// Handling touch
+/**
+ * @type {"draw" | "erase"}
+ */
+let touchAction = "draw";
+
+rActions[0].checked = true;
+
+/**
+ * Handles change touch action event
+ * @param {Event} event
+ * @returns {void}
+ */
+const handleChangeTouchAction = (event) => {
+    if (!isMobile()) return;
+    const target = /** @type {HTMLInputElement} */ (event.target);
+    touchAction = /** @type {"draw" | "erase"} */ (target.value);
+};
+rActions.forEach((rAction) => {
+    rAction.addEventListener("input", handleChangeTouchAction);
+});
+
+/**
+ * Handles touch on cell event
+ * @param {TouchEvent} event
+ * @returns {void}
+ */
+const handleTouchCell = (event) => {
+    if (!br || !gm) return;
+    if (!isMobile()) return;
+    event.preventDefault();
+    const [touch] = event.touches;
+    const offsetX = touch.pageX - canvas.getBoundingClientRect().left;
+    const offsetY = touch.pageY - canvas.getBoundingClientRect().top;
+    const x = br.getCellGridCoordinates(offsetX);
+    const y = br.getCellGridCoordinates(offsetY);
+
+    if (x < 0 || x >= br.grid || y < 0 || x >= br.grid) return;
+
+    switch (touchAction) {
+        case "draw":
+            gm.setCell(x, y, true);
+            break;
+        case "erase":
+            gm.setCell(x, y, false);
+            break;
+    }
+    gm.drawBoard();
+};
+canvas.addEventListener("touchmove", handleTouchCell);
+
+// Actions
 
 /** @type {number | null} Game running interval id */
 let playsId = null;
