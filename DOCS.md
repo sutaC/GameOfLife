@@ -24,6 +24,8 @@
 <dt><a href="#gm">gm</a> : <code>Game</code> | <code>undefined</code></dt>
 <dd><p>Main game object</p>
 </dd>
+<dt><a href="#touchAction">touchAction</a> : <code>&quot;draw&quot;</code> | <code>&quot;erase&quot;</code></dt>
+<dd></dd>
 <dt><a href="#playsId">playsId</a> : <code>number</code> | <code>null</code></dt>
 <dd><p>Game running interval id</p>
 </dd>
@@ -56,6 +58,9 @@
 <dt><a href="#btnTheme">btnTheme</a> : <code>HTMLButtonElement</code> | <code>null</code></dt>
 <dd><p>Button element for handling &#39;change theme action&#39;</p>
 </dd>
+<dt><a href="#rActions">rActions</a> : <code>NodeListOf.&lt;HTMLInputElement&gt;</code></dt>
+<dd><p>Radio elements for handling &#39;change touchAction action&#39;</p>
+</dd>
 <dt><a href="#preferedSize">preferedSize</a> : <code>number</code></dt>
 <dd><p>Prefered size of canvas</p>
 </dd>
@@ -64,11 +69,20 @@
 ## Functions
 
 <dl>
+<dt><a href="#isMobile">isMobile()</a> ⇒ <code>boolean</code></dt>
+<dd><p>Determining whether it is a mobile device</p>
+</dd>
 <dt><a href="#handleResize">handleResize()</a> ⇒ <code>void</code></dt>
 <dd><p>Handles resize event and initialization</p>
 </dd>
 <dt><a href="#handleClickCell">handleClickCell(event)</a> ⇒ <code>void</code></dt>
 <dd><p>Handles click on cell event</p>
+</dd>
+<dt><a href="#handleChangeTouchAction">handleChangeTouchAction(event)</a> ⇒ <code>void</code></dt>
+<dd><p>Handles change touch action event</p>
+</dd>
+<dt><a href="#handleTouchCell">handleTouchCell(event)</a> ⇒ <code>void</code></dt>
+<dd><p>Handles touch on cell event</p>
 </dd>
 <dt><a href="#handleToggleStage">handleToggleStage()</a> ⇒ <code>void</code></dt>
 <dd><p>Handles toggle game event</p>
@@ -291,6 +305,10 @@ Main brush object
 Main game object
 
 **Kind**: global variable  
+<a name="touchAction"></a>
+
+## touchAction : <code>&quot;draw&quot;</code> \| <code>&quot;erase&quot;</code>
+**Kind**: global variable  
 <a name="playsId"></a>
 
 ## playsId : <code>number</code> \| <code>null</code>
@@ -359,12 +377,24 @@ Output element for displaying time
 Button element for handling 'change theme action'
 
 **Kind**: global constant  
+<a name="rActions"></a>
+
+## rActions : <code>NodeListOf.&lt;HTMLInputElement&gt;</code>
+Radio elements for handling 'change touchAction action'
+
+**Kind**: global constant  
 <a name="preferedSize"></a>
 
 ## preferedSize : <code>number</code>
 Prefered size of canvas
 
 **Kind**: global constant  
+<a name="isMobile"></a>
+
+## isMobile() ⇒ <code>boolean</code>
+Determining whether it is a mobile device
+
+**Kind**: global function  
 <a name="handleResize"></a>
 
 ## handleResize() ⇒ <code>void</code>
@@ -381,6 +411,28 @@ Handles click on cell event
 | Param | Type |
 | --- | --- |
 | event | <code>MouseEvent</code> | 
+
+<a name="handleChangeTouchAction"></a>
+
+## handleChangeTouchAction(event) ⇒ <code>void</code>
+Handles change touch action event
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| event | <code>Event</code> | 
+
+<a name="handleTouchCell"></a>
+
+## handleTouchCell(event) ⇒ <code>void</code>
+Handles touch on cell event
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| event | <code>TouchEvent</code> | 
 
 <a name="handleToggleStage"></a>
 

@@ -131,6 +131,7 @@ window.addEventListener("resize", handleResize);
  */
 const handleClickCell = (event) => {
     if (!br || !gm) return;
+    if (isMobile()) return;
 
     event.preventDefault();
     if (event.buttons === 0) return;
@@ -205,6 +206,7 @@ const handleTouchCell = (event) => {
     gm.drawBoard();
 };
 canvas.addEventListener("touchmove", handleTouchCell);
+canvas.addEventListener("touchstart", handleTouchCell);
 
 // Actions
 
