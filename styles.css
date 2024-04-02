@@ -161,12 +161,25 @@ main:has(canvas.running) {
 
 footer {
     text-align: center;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 1rem;
     border-top: 1px dashed var(--clr-text);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: relative;
+}
+
+.side {
+    flex-basis: 20%;
+    text-align: left;
+}
+
+.drawing {
+    text-align: right;
+}
+
+.drawing small {
+    display: block;
 }
 
 a {
@@ -179,9 +192,6 @@ a:hover {
 }
 
 button#theme {
-    position: absolute;
-    right: 1rem;
-    bottom: 0.75rem;
     border: none;
     background-color: transparent;
     color: var(--clr-text);
@@ -211,7 +221,58 @@ button#theme:active {
     translate: 0;
 }
 
+.actions {
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.action > input {
+    display: none;
+}
+
+.action > label {
+    justify-content: center;
+    align-content: center;
+    padding: 0.25rem;
+    border-radius: 100%;
+    border: 1px solid transparent;
+    transition: all 100ms ease-out;
+}
+
+.action > label:hover {
+    translate: 0 -0.125rem;
+    opacity: 0.8;
+}
+
+.action > label:active {
+    translate: 0;
+}
+
+.action > input:checked + label {
+    background-color: var(--clr-text-light);
+    border-color: var(--clr-text);
+}
+
+/* --- */
+
+.desktop {
+    display: block;
+}
+.mobile {
+    display: none;
+}
+
 @media (width <= 600px) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+
+    /* --- */
+
     header {
         flex-direction: column-reverse;
         gap: 0.75rem;
@@ -224,5 +285,13 @@ button#theme:active {
     .stats {
         flex-direction: row;
         gap: 1rem;
+    }
+
+    .actions {
+        display: flex;
+    }
+
+    .action > label {
+        display: flex;
     }
 }
