@@ -1,131 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Game of Life</title>
-        <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Game of Life</title>
+		<link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
+		<link rel="manifest" href="manifest.json" />
 
-        <link rel="stylesheet" href="styles.css" />
-        <script type="module" src="./src/main.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <div class="controlls">
-                <button id="toggle">Run</button>
-                <button id="next">Next</button>
-                <button id="clear">Clear</button>
-            </div>
+		<link rel="stylesheet" href="styles.css" />
+		<script type="module" src="./src/main.js" defer></script>
+	</head>
+	<body>
+		<header>
+			<div class="controlls">
+				<button id="toggle">Run</button>
+				<button id="next">Next</button>
+				<button id="clear">Clear</button>
+			</div>
 
-            <h1>Conoway's Game of Life</h1>
+			<h1>Conoway's Game of Life</h1>
 
-            <div class="stats">
-                <p>Frames: <output id="frames">0</output></p>
-                <p>Time: <output id="time">0</output>s</p>
-            </div>
-        </header>
+			<div class="stats">
+				<p>Frames: <output id="frames">0</output></p>
+				<p>Time: <output id="time">0</output>s</p>
+			</div>
+		</header>
 
-        <main>
-            <canvas id="canvas"></canvas>
-        </main>
+		<main>
+			<canvas id="canvas"></canvas>
+		</main>
 
-        <footer>
-            <div class="side">
-                <button id="theme">
-                    <svg
-                        class="sun"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                    >
-                        <path
-                            d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"
-                        />
-                    </svg>
+		<footer>
+			<div class="side">
+				<button id="theme">
+					<svg
+						class="sun"
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						fill="currentColor"
+						viewBox="0 0 16 16"
+					>
+						<path
+							d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"
+						/>
+					</svg>
 
-                    <svg
-                        class="moon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                    >
-                        <path
-                            d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"
-                        />
-                    </svg>
-                </button>
-            </div>
+					<svg
+						class="moon"
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						fill="currentColor"
+						viewBox="0 0 16 16"
+					>
+						<path
+							d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"
+						/>
+					</svg>
+				</button>
+			</div>
 
-            <p>
-                Made by
-                <a
-                    href="https://github.com/sutaC"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >sutaC</a
-                >
-            </p>
+			<p>
+				Made by
+				<a
+					href="https://github.com/sutaC"
+					target="_blank"
+					rel="noopener noreferrer"
+					>sutaC</a
+				>
+			</p>
 
-            <div class="drawing side">
-                <div class="desktop">
-                    <small
-                        ><span class="highlight">Draw</span> - mouse left
-                    </small>
-                    <small
-                        ><span class="highlight">Erase</span> - mouse right
-                    </small>
-                </div>
-                <div class="actions mobile">
-                    <div class="action">
-                        <input
-                            type="radio"
-                            name="action"
-                            id="draw"
-                            value="draw"
-                            checked
-                        />
-                        <label for="draw">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"
-                                />
-                            </svg>
-                        </label>
-                    </div>
-                    <div class="action">
-                        <input
-                            type="radio"
-                            name="action"
-                            id="erase"
-                            value="erase"
-                            checked
-                        />
-                        <label for="erase"
-                            ><svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z"
-                                />
-                            </svg>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
+			<div class="drawing side">
+				<div class="desktop">
+					<small
+						><span class="highlight">Draw</span> - mouse left
+					</small>
+					<small
+						><span class="highlight">Erase</span> - mouse right
+					</small>
+				</div>
+				<div class="actions mobile">
+					<div class="action">
+						<input
+							type="radio"
+							name="action"
+							id="draw"
+							value="draw"
+							checked
+						/>
+						<label for="draw">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								viewBox="0 0 16 16"
+							>
+								<path
+									d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"
+								/>
+							</svg>
+						</label>
+					</div>
+					<div class="action">
+						<input
+							type="radio"
+							name="action"
+							id="erase"
+							value="erase"
+							checked
+						/>
+						<label for="erase"
+							><svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								viewBox="0 0 16 16"
+							>
+								<path
+									d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z"
+								/>
+							</svg>
+						</label>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
 </html>
