@@ -9,7 +9,11 @@ A simple implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki
 
 ## How to start?
 
-You only need to serve static files
+You only need to serve static files from `src/` directory. For example using command:
+
+```bash
+npx serve src
+```
 
 ## Documentation
 
@@ -21,7 +25,7 @@ For generating documentation uou can run [document](./document) shell comand if 
 
 Alternativelym, command for generating documentation is:
 
-```
+```bash
 jsdoc2md ./src/**/*.js > DOCS.md
 ```
 
