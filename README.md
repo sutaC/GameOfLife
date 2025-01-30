@@ -22,7 +22,7 @@ For generating documentation uou can run [document](./document) shell comand if 
 Alternativelym, command for generating documentation is:
 
 ```
-    jsdoc2md ./src/**/*.js > DOCS.md
+jsdoc2md ./src/**/*.js > DOCS.md
 ```
 
 (Make sure you are not using PowerShell with this command, becouse it causes encoding issues.)

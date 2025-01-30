@@ -1,2 +1,0 @@
-#!/bin/bash
-jsdoc2md ./src/**/*.js > DOCS.md
